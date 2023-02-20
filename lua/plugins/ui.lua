@@ -7,7 +7,7 @@ return {
       stages = "fade_in_slide_out",
       timeout = 3000,
       render = "compact",
-    }
+    },
   },
 
   -- bufferline
@@ -29,7 +29,7 @@ return {
         diagnostics = false,
         highlights = {
           buffer_selected = {
-            gui = "none"
+            gui = "none",
           },
         },
         offsets = {
@@ -43,11 +43,11 @@ return {
             filetype = "Outline",
             text = "Symbols Outline",
             highlight = "TSType",
-            text_align = "left"
-          }
-        }
-      }
-    }
+            text_align = "left",
+          },
+        },
+      },
+    },
   },
 
   -- statusline
@@ -121,7 +121,7 @@ return {
           { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = fg("Special") },
         },
       })
-    end
+    end,
   },
 
   -- dashboard
@@ -165,7 +165,7 @@ return {
           end,
         })
       end
-    end
+    end,
   },
 
   -- scrollbar for Neovim
@@ -176,7 +176,7 @@ return {
       excluded_filetypes = { "alpha", "neo-tree" },
       current_only = true,
       winblend = 75,
-    }
+    },
   },
 
   -- add minimap to buffer

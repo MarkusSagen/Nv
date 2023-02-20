@@ -122,16 +122,58 @@ return {
       },
     },
     keys = {
+      { "<leader>fP", "<CMD>Telescope project display_type=full<CR>", desc = "Find project" },
+      { "<leader>pp", "<CMD>Telescope project display_type=full<CR>", desc = "Project Find" },
+      { "<leader>fb", "<CMD>Telescope file_browser<CR>", desc = "[F]ile [B]rowser" },
+      { "<leader>sx", "<CMD>Telescope resume<CR>", desc = "Resume last search" },
+      { "<leader>'", "<CMD>Telescope resume<CR>", desc = "Resume last search" },
+      { "<leader>hm", "<CMD>Telescope man_pages<CR>", desc = "[H]elp [M]an Page" },
+      { "<leader>fh", "<CMD>Telescope help_tags<CR>", desc = "[F]ind [H]elp Tags" },
+      { "<leader>fg", "<CMD>Telescope git_files<CR>", desc = "[F]ind [G]it File" },
+      { "<leader>gf", "<CMD>Telescope git_files<CR>", desc = "[G]it [F]ind File" },
+      { "<leader>,", "<cmd>e #<CR>", desc = "Toggle Between Prev Buffer" },
+      { "<leader>fH", "<CMD>Telescope man_pages<CR>", desc = "[F]ind [H]elp Man Page" },
       {
-        "<leader>fp",
-        "<CMD>Telescope project display_type=full<CR>",
-        desc = "Find project"
+        "<leader>bb",
+        function()
+          require("telescope.builtin").buffers({
+            ignore_current_buffer = true,
+            sort_lastused = true,
+          })
+        end,
+        desc = "[B]uffers [B]rowse",
       },
       {
-        "<leader>sx",
-        "<CMD>Telescope resume<CR>",
-        desc = "Resume last search"
-      }
+        "<leader>fp",
+        function()
+          require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
+        end,
+        desc = "Find Plugin File",
+      },
+      {
+        "<leader>ff",
+        function()
+          -- TODO: https://github.com/nvim-telescope/telescope.nvim/issues/592
+          require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h") })
+        end,
+        desc = "[F]ind [F]ile (from open buffer)",
+      },
+      {
+        "<leader>fF",
+        function()
+          require("telescope.builtin").find_files()
+        end,
+        desc = "[F]ind [F]ile (from where nvim was opened)",
+       },
+       {
+        "<leader>sp",
+        function()
+          -- TODO: https://github.com/nvim-telescope/telescope.nvim/issues/592
+          require("telescope.builtin").live_grep({ cwd = vim.fn.expand("%:p:h") })
+        end,
+        "<CMD>Telescope live_grep<CR>",
+        desc = "[S]earch [P]roject (Live Grep)",
+      },
     },
     config = function(_, opts)
       local telescope = require("telescope")
@@ -220,5 +262,4 @@ return {
     config = true,
     keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
   },
-
 }
